@@ -1,14 +1,33 @@
 '*':
   'HTML Form':
     'prefix': 'form'
-    'body': '<form action="$1" method="${2:get}" accept-charset="utf-8">\n\t$0\n\n\t<p><input type="submit" value="Continue &rarr;"${TM_XHTML}></p>\n</form>'
+    'body': '<form action="$1" method="${2:get}" accept-charset="utf-8">\n\t$0\n\n\t<p><input type="submit" value="Continue &rarr;" /></p>\n</form>'
   'New call':
     'prefix': 'call'
-    'body': '{call .${1:funcName}${2: data="$3"}${4: /}}'
+    'body': '{call .${1:funcName} ${2:data="${3:all}"}${4: /}}$0'
+  'New broken call':
+    'prefix': 'callb'
+    'body': '{call .${1:funcName}${2: data="${3:all}"}${4: /}}$0'
   'New msg':
     'prefix': 'msg'
-    'body': '{msg desc="${1:}"}${2:}{/msg}'
+    'body': '{msg desc="${1:}"}${2:}{/msg}$0'
+  'New param - short':
+    'prefix': 'par'
+    'body': '{param: $1 /}$0'
+    'description': 'param shorthand'
+  'New param':
+    'prefix': 'param'
+    'body': '{param${1: type="$2"}}\n\t$3\n{/param}$0'
+    'description': 'param block'
+  'New let - short':
+    'prefix': 'l'
+    'body': '{let \$${1:varName}: $2 /}$0'
+    'description': 'let shorthand'
+  'New let':
+    'prefix': 'let'
+    'body': '{let \$${1:varName}${2: type="$3"}}\n\t$4\n{/let}$0'
+    'description': 'let block'
 '.source.soy':
   'New template':
     'prefix': 'tmpl'
-    'body': '/**\n * $1\n */\n{template .${1:fname}}\n\t$2\n{/template}\n'
+    'body': '${1:{namespace $2\\}}\n/**\n * $3\n */\n{template .${3:fname}}\n\t$0\n{/template}\n'
